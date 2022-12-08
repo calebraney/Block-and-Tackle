@@ -1,10 +1,1 @@
-"use strict";
-(() => {
-  // src/index.js
-  document.addEventListener("DOMContentLoaded", function(e) {
-    console.log("hello world");
-    window.Webflow ||= [];
-    window.Webflow.push(() => {
-    });
-  });
-})();
+"use strict";(()=>{document.addEventListener("DOMContentLoaded",function(o){console.log("hello world"),window.Webflow||=[],window.Webflow.push(()=>{})});})();
