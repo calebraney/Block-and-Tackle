@@ -8,23 +8,32 @@ const resultsCount = document.querySelector('[fs-cmsfilter-element="results-coun
 
 console.log(collectionList);
 
-filterItems.forEach((item) => {
-  item.addEventListener('click', (event) => {
-    // filterItems.filter()
+const arrangeCheckboxes = function () {};
 
-    // get the state for gsap flip
-    let state = Flip.getState('.filters_item');
-    const checkbox = item.querySelector('[type=checkbox]');
-    //re-arrange the Filter Items
-    if (checkbox.classList.contains('is-active')) {
-      filterList.append(item);
-    } else {
-      filterList.prepend(item);
-    }
-    // Animate the filter items
-    Flip.from(state, {
-      duration: 0.4,
-      ease: 'power2.out',
-    });
+filterForm.addEventListener('click', (event) => {
+  const clickedFilterItem = event.target.closest('[cr-element="filter-item"]');
+  if (!clickedFilterItem) return;
+
+  //select the checked filter items
+  //   const checkedFilterItems = filterItems.filter(function (item) {
+  //     return item.querySelector('[type=checkbox]').checked;
+  //   });
+  //   console.log(checkedFilterItems);
+
+  //animate the filter items
+
+  // get the state for gsap flip
+  let state = Flip.getState('.filters_item');
+  const checkbox = clickedFilterItem.querySelector('[type=checkbox]');
+  //re-arrange the Filter Items
+  if (checkbox.classList.contains('is-active')) {
+    filterList.append(clickedFilterItem);
+  } else {
+    filterList.prepend(clickedFilterItem);
+  }
+  // Animate the filter items
+  Flip.from(state, {
+    duration: 0.4,
+    ease: 'power2.out',
   });
 });
