@@ -2,17 +2,24 @@
 
 const cursor = function () {
   const hoverItems = document.querySelectorAll('[cr-element="hover-item"]');
-  const hoverWrapper = document.querySelector('[cr-element="hover-wrapper"]');
   const cursor = document.querySelector('#cursor-element');
   const cursorText = document.querySelector('#cursor-text');
 
   //if the elements aren't found exit the function
-  if (!hoverItems || !hoverWrapper || !cursor || !cursorText) return;
+  if (!hoverItems || !cursor || !cursorText) return;
 
   hoverItems.forEach((item) => {
     // action on hover in
     item.addEventListener('mouseenter', function (event) {
-      const itemText = item.querySelector('[cr-hover-text]').getAttribute('cr-hover-text');
+      let itemText;
+      // if the hover item has cr-hover-text get the text from the item
+      if (item.hasAttribute('cr-hover-text')) {
+        itemText = item.getAttribute('cr-hover-text');
+      }
+      // if not, get the text from a child with that attribute
+      else {
+        itemText = item.querySelector('[cr-hover-text]').getAttribute('cr-hover-text');
+      }
       cursorText.textContent = itemText;
       cursor.classList.add('is-active');
     });
