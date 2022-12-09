@@ -20,6 +20,7 @@ const cursor = function () {
       else {
         itemText = item.querySelector('[cr-hover-text]').getAttribute('cr-hover-text');
       }
+      if (!itemText) return;
       cursorText.textContent = itemText;
       cursor.classList.add('is-active');
     });
