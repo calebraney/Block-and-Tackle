@@ -1,6 +1,6 @@
 require('esbuild')
   .build({
-    entryPoints: ['src/cursor.js', 'src/projects.js'],
+    entryPoints: ['src/'],
     bundle: true,
     minify: true,
     watch: true,
