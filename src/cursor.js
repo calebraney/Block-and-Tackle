@@ -1,14 +1,19 @@
 'use strict';
 
 const cursor = function () {
-  const hoverItems = document.querySelectorAll('[cr-element="hover-item"]');
+  const hoverTextItems = document.querySelectorAll('[cr-element="cursor-text"]');
+  const hoverSliderItems = document.querySelectorAll('[cr-element="cursor-slider"]');
+  const hoverVideoItems = document.querySelectorAll('[cr-element="cursor-video"]');
   const cursor = document.querySelector('#cursor-element');
   const cursorText = document.querySelector('#cursor-text');
+  const cursorSlider = document.querySelector('#cursor-slider');
+  const cursorVideo = document.querySelector('#cursor-video');
 
   //if the elements aren't found exit the function
-  if (!hoverItems || !cursor || !cursorText) return;
+  if (!cursor) return;
 
-  hoverItems.forEach((item) => {
+  // Event Listener for each hover text item
+  hoverTextItems.forEach((item) => {
     // action on hover in
     item.addEventListener('mouseenter', function (event) {
       let itemText;
@@ -20,13 +25,45 @@ const cursor = function () {
       else {
         itemText = item.querySelector('[cr-hover-text]').getAttribute('cr-hover-text');
       }
-      if (!itemText) return;
+      if (!itemText || !cursorText) return;
       cursorText.textContent = itemText;
+      cursorText.style.display = 'block';
       cursor.classList.add('is-active');
     });
     // action on hover out
     item.addEventListener('mouseleave', function (event) {
       cursor.classList.remove('is-active');
+      cursorText.style.display = 'none';
+    });
+  });
+
+  // Event Listener for each hover slider item
+  hoverSliderItems.forEach((item) => {
+    if (!cursorSlider) return;
+    // action on hover in
+    item.addEventListener('mouseenter', function (event) {
+      cursorSlider.style.display = 'block';
+      cursor.classList.add('is-active');
+    });
+    // action on hover out
+    item.addEventListener('mouseleave', function (event) {
+      cursor.classList.remove('is-active');
+      cursorSlider.style.display = 'none';
+    });
+  });
+
+  // Event Listener for each hover video item
+  hoverVideoItems.forEach((item) => {
+    if (!cursorVideo) return;
+    // action on hover in
+    item.addEventListener('mouseenter', function (event) {
+      cursorVideo.style.display = 'block';
+      cursor.classList.add('is-active');
+    });
+    // action on hover out
+    item.addEventListener('mouseleave', function (event) {
+      cursor.classList.remove('is-active');
+      cursorVideo.style.display = 'none';
     });
   });
 };
