@@ -1,9 +1,9 @@
 'use strict';
 
 const cursor = function () {
-  const hoverTextItems = document.querySelectorAll('[cr-element="cursor-text"]');
-  const hoverSliderItems = document.querySelectorAll('[cr-element="cursor-slider"]');
-  const hoverVideoItems = document.querySelectorAll('[cr-element="cursor-video"]');
+  const hoverTextItems = document.querySelectorAll('[cr-text-cursor]');
+  const hoverSliderItems = document.querySelectorAll('[cr-slider-cursor]');
+  const hoverVideoItems = document.querySelectorAll('[cr-video-cursor]');
   const cursor = document.querySelector('#cursor-element');
   const cursorText = document.querySelector('#cursor-text');
   const cursorSlider = document.querySelector('#cursor-slider');
