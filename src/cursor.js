@@ -2,7 +2,7 @@
 
 const cursor = function () {
   const hoverTextItems = document.querySelectorAll('[cr-text-cursor]');
-  const hoverSliderItems = document.querySelectorAll('[cr-slider-cursor]');
+  const hoverSliderItems = document.querySelectorAll('[cr-slider-cursor], .splide');
   const hoverVideoItems = document.querySelectorAll('[cr-video-cursor]');
   const cursor = document.querySelector('#cursor-element');
   const cursorText = document.querySelector('#cursor-text');
