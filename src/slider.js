@@ -1,6 +1,6 @@
-import Splide from '../node_modules/@splidejs/splide';
+'use strict';
 
-('use strict');
+import Splide from '../node_modules/@splidejs/splide';
 
 const splide = function () {
   const sliderComponents = document.querySelectorAll('.splide');
