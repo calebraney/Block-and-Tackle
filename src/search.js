@@ -5,6 +5,23 @@ const filterForm = document.querySelector('[fs-cmsfilter-element="filters"]');
 const filterList = document.querySelector('[cr-element="filter-list"]');
 const filterItems = document.querySelectorAll('[cr-element="filter-item"]');
 const resultsCount = document.querySelector('[fs-cmsfilter-element="results-count"]');
+let colNumber1 = 3;
+let colNumber2 = 9;
+
+const checkAttributes = function () {
+  const atr1Col = document.querySelector('[cr-1-col]');
+  const atr2Col = document.querySelector('[cr-2-col]');
+  if (!atr1Col || !atr2Col) return;
+  let num1 = Number.parseFloat(atr1Col.getAttribute('cr-1-col'));
+  let num2 = Number.parseFloat(atr2Col.getAttribute('cr-2-col'));
+  if (Number.isSafeInteger(num1) || !isNaN(num1)) {
+    colNumber1 = num1;
+  }
+  if (Number.isSafeInteger(num2) || !isNaN(num2)) {
+    colNumber2 = num2;
+  }
+};
+checkAttributes();
 
 const arrangeCheckboxes = function () {
   // get the state for gsap flip
@@ -35,11 +52,11 @@ const modifyGrid = function () {
   projectList.classList.remove('is-2-col');
   projectList.classList.remove('is-1-col');
   //two column grid
-  if (results <= 9 && results >= 3) {
+  if (results <= colNumber2 && results > colNumber1) {
     projectList.classList.add('is-2-col');
   }
   //one column grid
-  if (results <= 3) {
+  if (results <= colNumber1) {
     projectList.classList.add('is-1-col');
   }
 };
