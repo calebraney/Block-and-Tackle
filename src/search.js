@@ -5,25 +5,23 @@ const filterForm = document.querySelector('[fs-cmsfilter-element="filters"]');
 const filterList = document.querySelector('[cr-element="filter-list"]');
 const filterItems = document.querySelectorAll('[cr-element="filter-item"]');
 const resultsCount = document.querySelector('[fs-cmsfilter-element="results-count"]');
-const atr1Col = document.querySelector('[cr-1-col]').getAttribute('cr-1-col');
-const atr2Col = document.querySelector('[cr-2-col]').getAttribute('cr-2-col');
-let NUMBER_1_COL = 3;
-let NUMBER_2_COL = 9;
+let colNumber1 = 3;
+let colNumber2 = 9;
 
-console.log(atr1Col, atr2Col);
-
-const checkAttributes = function (atr1, atr2) {
-  let input1 = +atr1;
-  let input2 = +atr1;
-  if (Number.isSafeInteger(input1)) {
-    NUMBER_1_COL = input1;
+const checkAttributes = function () {
+  const atr1Col = document.querySelector('[cr-1-col]');
+  const atr2Col = document.querySelector('[cr-2-col]');
+  if (!atr1Col || !atr2Col) return;
+  let num1 = Number.parseFloat(atr1Col.getAttribute('cr-1-col'));
+  let num2 = Number.parseFloat(atr2Col.getAttribute('cr-2-col'));
+  if (Number.isSafeInteger(num1) || !isNaN(num1)) {
+    colNumber1 = num1;
   }
-  if (Number.isSafeInteger(input2)) {
-    NUMBER_2_COL = input2;
+  if (Number.isSafeInteger(num2) || !isNaN(num2)) {
+    colNumber2 = num2;
   }
 };
-checkAttributes(atr1Col, atr2Col);
-console.log(NUMBER_1_COL, NUMBER_2_COL);
+checkAttributes();
 
 const arrangeCheckboxes = function () {
   // get the state for gsap flip
@@ -54,11 +52,11 @@ const modifyGrid = function () {
   projectList.classList.remove('is-2-col');
   projectList.classList.remove('is-1-col');
   //two column grid
-  if (results <= NUMBER_2_COL && results > NUMBER_1_COL) {
+  if (results <= colNumber2 && results > colNumber1) {
     projectList.classList.add('is-2-col');
   }
   //one column grid
-  if (results <= NUMBER_1_COL) {
+  if (results <= colNumber1) {
     projectList.classList.add('is-1-col');
   }
 };
